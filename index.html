@@ -9,38 +9,19 @@
   <link rel="stylesheet" href="parametre.css" />
   <script src="jquery-1.6.4.min.js"></script>
   <script src="jquery.mobile-1.0.min.js"></script>
- 
+ <script type="text/javascript" src="zepto.min.js"></script>
+    <script type="text/javascript">
+        function refreshDATA() {
+            $('#temp').load('/arduino/temperature/');
+			//$('#temp').load('/arduino/analog/0');
+			$('#hygro').load('/arduino/humidite/');
+        }
+    </script>
 
 <script>
 
-function checkRest()
+function launchRest(num_bouton)
 {
-  var xmlhttp;
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange=function()
-  {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-      document.getElementById("on").disabled=(xmlhttp.responseText.substr(xmlhttp.responseText.length - 3,1)=='1');
-      document.getElementById("off").disabled=(xmlhttp.responseText.substr(xmlhttp.responseText.length - 3,1)=='0');
-    }
-  }
-  //url="/arduino/analog/"+document.getElementById("pin").value;
-  xmlhttp.open("GET",url,true);
-  xmlhttp.send();
-}
-
-  function launchRest(num_bouton)
-{
-  var vitesse=document.getElementById("vitesse").value;
-  var dif_vitesse=document.getElementById("dif_vitesse").value;
   var xmlhttp;
   if (window.XMLHttpRequest)
   // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -53,69 +34,59 @@ function checkRest()
     {document.getElementById("reply").innerHTML=xmlhttp.responseText;}
   }
 
-  url="/arduino/"+vitesse+"/"+dif_vitesse+"/"+num_bouton;
+  url="/arduino/bouton/"+num_bouton;
   xmlhttp.open("GET",url,true);
   xmlhttp.send();
-  setTimeout(function() {checkRest();}, 150);
+  //setTimeout(function() {checkRest();}, 150);
   
 }
 
-function refresh() {
+function refreshVIDEO() {
         var unique = new Date();
-        
 		//document.images.Image.src = "http://132.169.195.217:8080/?action=stream" + unique.getTime(); //eth
-		//document.images.stream.src = "http://arduino.local:8080/?action=stream"+ unique.getTime();  //wlan
+		document.images.stream.src = "http://arduino.local:8080/?action=stream"+ unique.getTime();  //wlan
 		//document.images.stream.src = "http://192.168.240.1:8080/?action=stream"+ unique.getTime();  //wlan
-		document.images.stream.src = "http://192.168.1.17:8080/?action=stream"+ unique.getTime(); //sur reseau cabanon
-		//document.images.stream.src = "http://89.86.63.111:8080/?action=snapshot"+ unique.getTime(); //box cabanon
-		$('#content').load('/arduino/temperature');
+		//document.images.stream.src = "http://192.168.1.17:8080/?action=stream"+ unique.getTime(); //sur reseau MAIZ
+		//document.images.stream.src = "http://89.85.26.136:8080/?action=stream"+ unique.getTime(); //box cabanon
 }
 window.onload = function (){
-       setInterval("refresh()", 100);
+       setInterval("refreshDATA()", 1000);
+	   setInterval("refreshVIDEO()", 100);
+	   
 }
 
 
 </script>
 </head>
 <body onload="checkRest()">
-<!-- <center>
-<FORM>
-<label for="vitesse"><center><b><big>Vitesse :</b></big></center></label>
-<b><input type="range" name="slider" id="vitesse" value="150" min="0" max="400"/></b>
-<br/>
-<label for="dif_vitesse"><center><b><big>Difference de Vitesse :</b></big></center></label>
-<b><input type="range" name="slider" id="dif_vitesse" value="50" min="0" max="100"/></b>
-</FORM>
+<center>
+<div id=reply></div>
+<img id="stream" src="http://arduino.local:8080/?action=stream"/><br/>
 
-
-<b><a data-role="button"id="avant_gauche" onclick="launchRest(1);" data-inline="true" data-mini="true"><img src="haut1.png"></a>
-<a data-role="button"id="tout_droit" onclick="launchRest(2);" data-inline="true"data-mini="true"><img src="haut2.png"></a>
-<a data-role="button"id="avant_droit" onclick="launchRest(3);" data-inline="true"data-mini="true"><img src="haut3.png"></a></b>
+<b><a data-role="button"id="haut" onclick="launchRest(1);" data-inline="true" data-mini="true"><img src="haut.png"></a></b>
 <br/>
 <b>
-<a data-role="button"id="demi_tour_gauche" onclick="launchRest(4);" data-inline="true"data-mini="true"><img src="milieu1.png"></a>
-<a data-role="button"id="stop" onclick="launchRest(5);" data-inline="true"data-mini="true"><img src="milieu2.png"></a>
-<a data-role="button"id="demi_tour_droite" onclick="launchRest(6);" data-inline="true"data-mini="true"><img src="milieu3.png"></a></b>
+<a data-role="button"id="gauche" onclick="launchRest(2);" data-inline="true"data-mini="true"><img src="gauche.png"></a>
+<a data-role="button"id="cana" onclick="launchRest(3);" data-inline="true"data-mini="true"><img src="feuille40x40.png"></a>
+<a data-role="button"id="droite" onclick="launchRest(4);" data-inline="true"data-mini="true"><img src="droite.png"></a></b>
 <br/>
-<b><a data-role="button"id="arriere_gauche" onclick="launchRest(7);" data-inline="true"data-mini="true"><img src="bas1.png"></a>
-<a data-role="button"id="arriere" onclick="launchRest(8);" data-inline="true"data-mini="true"><img src="bas2.png"></a>
-<a data-role="button"id="arriere_droite" onclick="launchRest(9);" data-inline="true"data-mini="true"><img src="bas3.png"></a></b>
+<b><a data-role="button"id="bas" onclick="launchRest(5);" data-inline="true"data-mini="true"><img src="bas.png"></a></b>
 <br/>
-<a data-role="button"id="klaxon" onclick="launchRest(10);" data-inline="true"data-mini="true"><img src="klaxon.png"></a></b> -->
-<center>
-<span id="content">Waiting for Arduino...</span>
-<div id=reply></div>
-<!-- <img id="stream" src="http://89.86.63.111:8080/?action=snapshot"/>
-<img id="stream" src="http://192.168.1.17:8080/?action=stream"/>
-<img id="stream" src="http://arduino.local:8080/?action=stream"/>
-<img id="stream" src="http://192.168.240.1:8080/?action=stream"/>  -->
 
- <img id="stream" src="http://192.168.1.17:8080/?action=stream"/><br/>
 
-<img id="ventil" src="soleil 50x50.png"/>
-<img id="ventil" src="lune 50x50.png"/><br/>
-<img id="ventil" src="thermometre 50x50.png"/>
 
+
+
+
+<!-- <img id="ventil" src="soleil 50x50.png"/> -->
+<!-- <img id="ventil" src="lune 50x50.png"/><br/> -->
+<img id="thermo" src="thermometre 50x50.png"/>
+<span id="temp" style=" text-align:center; font-weight:bold; letter-spacing:4px; font-size:20px;">Waiting for Arduino...</span><br/>
+		  <center><b><big><label id="temp"></b></big></center></label><br/>
+<img id="goutte" src="goutte.png"/>
+<span id="hygro" style="font-weight:bold; letter-spacing:4px; font-size:20px;">Waiting for Arduino...</span><br/>
+		  
+		  
 </body>
 </center>
 </html>

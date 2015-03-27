@@ -1,0 +1,66 @@
+*****************************************************************
+      SolidWorks Corporation - Compte-rendu d'état du Processeur IGES
+*****************************************************************
+=================================================================
+Informations générales
+=================================================================
+Envoi de l'identification du produit système en cours  : YunCaseBase.SLDPRT
+Réception de l'identification du produit système en cours: YunCaseBase.SLDPRT
+Nom de fichier                    : H:\perso\iBox\3D\test ouverture 2013\YunCaseBase.IGS
+Envoi du système en cours               : SolidWorks 2014
+Version du préprocesseur         : SolidWorks 2014
+Date de création du fichier           : 150225.082927
+Date de création du modèle          : 150225.082927
+Unités                        : MM
+Echelle de l'espace modèle            : 1
+Auteur                       : js235785
+Organisation                 : 
+
+
+=================================================================
+Informations sur le traitement des entités
+=================================================================
+
+
+=================================================================
+Analyse de précision d'un fichier IGES:
+=================================================================
+  Nombre le plus répandu de chiffres significatifs:               3
+  Nombre le plus grand de chiffres significatifs:                     12
+  Nombre moyen de chiffres significatifs :                3.99084
+  Distance maximale jusqu'à l'origine:                          1733.21
+  Distance minimale jusqu'à l'origine:                                0
+  Nombre effectif de chiffres significatifs:                   12
+
+
+=================================================================
+Récapitulatif des entités
+=================================================================
+-----------------------------------------------------------------
+Nom de type                                         Nombre converti
+---- ----                                         ----- ---------
+100  Arc                                            116       116
+102  Composite curve                                218       218
+110  Line                                           424       424
+120  Surface of revolution                           37        37
+124  Transformation matrix                           62        62
+126  Rational B-spline curve                        514       514
+128  Rational B-spline surface                       60        60
+142  Curve on a parametric surface                  109       109
+144  Trimmed parametric surface                      97        97
+314  Color definition                                 1         1
+_________________________________________________________________
+
+
+=================================================================
+Récapitulatif des résultats
+=================================================================
+Type de fonction SolidWorks                Nombre
+-----------------------                -----
+Fonction(s) volumique(s)                       1
+Fonction(s) surfacique(s)                     0
+Fonction(s) de courbe/d'esquisse                0
+--------------------------------------------
+Heure de début: mercredi, février 25, 2015 08:34:49
+Heure de fin: mercredi, février 25, 2015 08:34:51
+Durée de traitement: 0 days, 00 hours, 00 mins, 02 secs
